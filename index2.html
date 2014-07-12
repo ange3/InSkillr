@@ -17,7 +17,7 @@
 	<div>
 		<h1>What skills do you need for your dream job?</h1>
 
-		<h3>I heard you wanted to be a Senior Software Engineer..</h3>
+		<h3>I heard you wanted to be a Senior Software Engineer!</h3>
 
 	</div>
 
@@ -35,25 +35,25 @@
 	var obj = [
 		{"skill": "OOP", "weight":0.1, match:true},
 		{"skill": "Web Applications", "weight":0.2, match:true},
-		{"skill_id": 18789, "skill": "Data-driven", "weight":0.3, match:true},
-		{"skill_id": 22412, "skill": "Marin Software", "weight":0.8, match:true},
-		{"skill_id": 44846, "skill": "Real World", "weight":0.7, match:true},
-		{"skill_id": 2888, "skill": "Collaboration", "weight":0.4, match:true},
-		{"skill_id": 989, "skill": "Trends", "weight":0.1, match:true},
-		{"skill_id": 20080, "skill": "Design-Build", "weight":0.6, match:true},
-		{"skill_id": 2498, "skill": "Unit Testing", "weight":0.9, match:true},
-		{"skill_id": 18527, "skill": "Object-oriented Software", "weight":0.5, match:true},
-		{"skill_id": 12584, "skill": "Collaborative Environment", "weight":0.1, match:false},
-		{"skill_id": 19897, "skill": "Datasets", "weight":0.3, match:false},
-		{"skill_id": 20097, "skill": "Software Engineers", "weight":0.1, match:false},
-		{"skill_id": 1136, "skill": "Distributed Systems", "weight":0.2, match:false},
-		{"skill_id": 18230, "skill": "Database Systems", "weight":0.6, match:false},
-		{"skill_id": 1070, "skill": "Algorithms", "weight":0.1, match:false},
-		{"skill_id": 1541, "skill": "Computer Science", "weight":0.9, match:false},
-		{"skill_id": 242, "skill": "Software", "weight":0.1, match:false},
-		{"skill_id": 17, "skill": "Engineers", "weight":0.3, match:false},
-		{"skill_id": 10335, "skill": "Designing", "weight":0.4, match:false},
-		{"skill_id": 672, "skill": "Code", "weight":0.7, match:false}];
+		{"skill": "Data-driven", "weight":0.3, match:true},
+		{"skill": "Marin Software", "weight":0.8, match:true},
+		{"skill": "Real World", "weight":0.7, match:true},
+		{"skill": "Collaboration", "weight":0.4, match:true},
+		{"skill": "Trends", "weight":0.1, match:true},
+		{"skill": "Design-Build", "weight":0.6, match:true},
+		{"skill": "Unit Testing", "weight":0.9, match:true},
+		{"skill": "Object-oriented Software", "weight":0.5, match:true},
+		{"skill": "Collaborative Environment", "weight":0.1, match:false},
+		{"skill": "Datasets", "weight":0.3, match:false},
+		{"skill": "Software Engineers", "weight":0.1, match:false},
+		{"skill": "Distributed Systems", "weight":0.2, match:false},
+		{"skill": "Database Systems", "weight":0.6, match:false},
+		{"skill": "Algorithms", "weight":0.1, match:false},
+		{"skill": "Computer Science", "weight":0.9, match:false},
+		{"skill": "Software", "weight":0.1, match:false},
+		{"skill": "Engineers", "weight":0.3, match:false},
+		{"skill": "Designing", "weight":0.4, match:false},
+		{"skill": "Code", "weight":0.7, match:false}];
 
 
 	var diameter = 480,
@@ -65,6 +65,11 @@
 	    .size([diameter, diameter])
 	    .padding(1.5);
 
+    // Check this
+    var position = gup( 'country' );
+    position = position.replace("+"," ");
+    alert(position);
+    
 	// Skills you do have
 
 	var svg = d3.select(".skills").append("svg")
@@ -72,7 +77,7 @@
 	    .attr("height", diameter)
 	    .attr("class", "bubble");
 
-	d3.json("data/1.json", function(error, root) {
+	d3.json("data/SkillsHaving.json", function(error, root) {
 	  var node = svg.selectAll(".node")
 	      .data(bubble.nodes(classes(root))
 	      .filter(function(d) { return !d.children; }))
@@ -117,14 +122,14 @@
 
 	    .attr("class", "bubble");
 
-	d3.json("flare2.json", function(error, root) {
+	d3.json("data/SkillsNotHaving.json", function(error, root) {
 	  var node = svg2.selectAll(".node")
 	      .data(bubble.nodes(classes(root))
 	      .filter(function(d) { return !d.children; }))
 	    .enter().append("g")
 	      .attr("class", "node")
 	      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-	      .on("click", click);
+	      .on("mouseover", click);
 
 	  node.append("title")
 	      .text(function(d) { return d.className + ": " + format(d.value); });
@@ -175,11 +180,26 @@
 	    .transition()
 	      .delay(1500)
 	      .attr("transform", "translate(120,120)scale(1)")
-	      .style("fill-opacity", 0.8)
+	      .style("fill-opacity", 0.6)
 	      // .remove();
+                  
+                  
 	}
 
 	d3.select(self.frameElement).style("height", diameter + "px");
+    
+    function gup( name )
+    {
+        name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+        var regexS = "[\\?&]"+name+"=([^&#]*)";
+        var regex = new RegExp( regexS );
+        var results = regex.exec( window.location.href );
+        if( results == null )
+            return "";
+        else
+            return results[1];
+    }
+    
 </script>
 
 
