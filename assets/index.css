@@ -20,6 +20,11 @@
   text-anchor: end;
 }
 
+.small_text{
+	font: 8px sans-serif;
+	text-anchor: end;
+}
+
 body{
 	font-family: Helvetica;
 }

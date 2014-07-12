@@ -77,7 +77,8 @@
 
 	var diameter = 580,
 	    format = d3.format(",d"),
-	    color = d3.scale.category20c();
+	    color = d3.scale.category20c(),
+	    default_font_size = '10px';
 
 	var bubble = d3.layout.pack()
 	    .sort(null)
@@ -108,7 +109,15 @@
 	      .on("mouseover", click);
 
 	  node.append("title")
-	      .text(function(d) { return d.className + ": " + format(d.value); });
+	      .text(function(d) { 
+	      	// console.log(d.className + ": " + format(d.value)); 
+	      	return d.className + ": " + format(d.value); 
+	      })
+	      
+
+	      
+	    	// console.log(this);
+	      ;
 
 	  node.append("circle")
 	  	  .attr("r", 0)
@@ -126,6 +135,16 @@
 	  	  .duration(3000)
 	      .attr("dy", ".3em")
 	      .style("text-anchor", "middle")
+
+	      .attr("class", function(d) {
+	      	if (d.value<=3){
+	      		return "small_text";
+	      	}
+	    	})
+	    	.attr("width", function(d){
+	      	// console.log(d);
+	      	return d.r;
+	      })
 	      
 	      .text(function(d) { return d.className.substring(0, d.r / 3); })
 	      
@@ -133,9 +152,9 @@
 
 	// Skills you do not have
 
-	var space = d3.select(".skills").append("svg")
-		.attr("width", 200)
-		.attr("height", 200);
+	// var space = d3.select(".skills").append("svg")
+	// 	.attr("width", 200)
+	// 	.attr("height", 200);
 
 	var svg2 = d3.select(".skills").append("svg")
 	    .attr("width", diameter)
@@ -171,6 +190,16 @@
 	  	  .duration(3000)
 	      .attr("dy", ".3em")
 	      .style("text-anchor", "middle")
+
+	      .attr("class", function(d) {
+	      	if (d.value<=3){
+	      		return "small_text";
+	      	}
+	    	})
+	    	.attr("width", function(d){
+	      	// console.log(d);
+	      	return d.r;
+	      })
 	      
 	      .text(function(d) { return d.className.substring(0, d.r / 3); })
 	      
@@ -193,17 +222,20 @@
 	function click(d){
 		this.parentNode.appendChild(this);
 
+		// console.log(d3.select(this).attr("transform"));
+
+		var orig_pos = d3.select(this).attr("transform");
+
 	  d3.select(this)
 	      .style("pointer-events", "none")
 	    .transition()
 	      .duration(750)
-	      .attr("transform", "translate(200,200)scale(3)")
+	      .attr("transform", "translate(" + diameter/2 + "," + diameter/2 + ")scale(3)")
 	    .transition()
 	      .delay(1500)
-	      .attr("transform", "translate(150,150)scale(1)")
+	      .attr("transform", orig_pos)
 	      .style("fill-opacity", 0.6)
-	      // .remove();
-                  
+	      // .remove();                  
                   
 	}
 
@@ -219,13 +251,17 @@
             return "";
         else
             return results[1];
-    }
+    };
                               
     function drawszlider(ossz, meik){
        var szazalek=Math.round((meik*100)/ossz);
        document.getElementById("szliderbar").style.width=szazalek+'%';
        document.getElementById("szazalek").innerHTML=szazalek+'%';
-    }
+    };
+
+    function zoom() {
+		  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+		};
     
 </script>
 
