@@ -7,6 +7,16 @@
 	position: relative;
 }
 
+#title_here{
+	text-align: left;
+	font-family: Helvetica;
+	margin-left: 80px;
+	color: rgb(240,198,115);
+/*	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(240,198,115);
+*/
+}
+
 .skills_false{
 	float:right;
 	/*fill: darkorange;*/

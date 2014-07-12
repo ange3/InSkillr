@@ -14,6 +14,7 @@
     <!--<link rel="stylesheet" type="text/css" href="style.css" />-->
 	<title>Roadmap</title>
     <img src = "page2_img.png">
+    <h1 id = "title_here">Product Manager</h1>
 </head>
 <body><!-- onload="drawszlider(121, 121);-->
     <style>
@@ -61,7 +62,7 @@
 	    format = d3.format(",d"),
 	    color = d3.scale.category20c(),
 	    default_font_size = '10px',
-	    bigCircleTime = 7000,
+	    bigCircleTime = 10000,
 	    smallCircleTime = 3000;
 
 	var bubble = d3.layout.pack()
@@ -222,8 +223,8 @@
 		      .attr("fill", "url(#person_img1)")
 
 					
-		      .style("stroke", "grey")
-		      .style("stroke-width", "2");
+		      .style("stroke", "white")
+		      .style("stroke-width", "1");
 		      // .delay(smallCircleTime)
 		      // .remove();
 		      // .delay(smallCircleTime);
@@ -237,8 +238,8 @@
 		      .attr("transform", "translate(0,-50)")
 		      // .attr("class", "peopleCircle1")
 		      .attr("fill", "url(#person_img2)")
-		      .style("stroke", "grey")
-		      .style("stroke-width", "2");
+		      .style("stroke", "white")
+		      .style("stroke-width", "1");
 
 		 var smallCircle3 = d3.select(this).append("circle")
 		  	  .attr("r", 0)
@@ -248,8 +249,8 @@
 
 		      .attr("transform", "translate(30,-30)")
 		      .attr("fill", "url(#person_img3)")
-		      .style("stroke", "grey")
-		      .style("stroke-width", "2");
+		      .style("stroke", "white")
+		      .style("stroke-width", "1");
 
 		var defs = svg.append('defs');
 		var g = defs.append("pattern")
@@ -292,8 +293,8 @@
 		var img = g.append("image")
 					.attr("x", "0")
 					.attr("y", "0")
-					.attr("width", "30")
-					.attr("height", "30")
+					.attr("width", "25")
+					.attr("height", "25")
 					.attr("xlink:href", "/Images/People3.jpg");
 
 
@@ -311,7 +312,7 @@ var smallCircle4 = d3.select(this).append("circle")
 
 					
 		      .style("stroke", "grey")
-		      .style("stroke-width", "2");
+		      .style("stroke-width", "1");
 		      // .delay(smallCircleTime)
 		      // .remove();
 		      // .delay(smallCircleTime);
@@ -326,7 +327,7 @@ var smallCircle4 = d3.select(this).append("circle")
 		      // .attr("class", "peopleCircle1")
 		      .attr("fill", "url(#course_img2)")
 		      .style("stroke", "grey")
-		      .style("stroke-width", "2");
+		      .style("stroke-width", "1");
 
 		 var smallCircle6 = d3.select(this).append("circle")
 		  	  .attr("r", 0)
@@ -337,7 +338,7 @@ var smallCircle4 = d3.select(this).append("circle")
 		      .attr("transform", "translate(30,30)")
 		      .attr("fill", "url(#course_img3)")
 		      .style("stroke", "grey")
-		      .style("stroke-width", "2");
+		      .style("stroke-width", "1");
 
 		var defs = svg.append('defs');
 		var g = defs.append("pattern")
@@ -381,7 +382,7 @@ var smallCircle4 = d3.select(this).append("circle")
 					.attr("x", "0")
 					.attr("y", "0")
 					.attr("width", "30")
-					.attr("height", "20")
+					.attr("height", "23")
 					.attr("xlink:href", "/Images/Course3.png");
 
 
@@ -393,6 +394,7 @@ var smallCircle4 = d3.select(this).append("circle")
 
 	        .transition()
 	      .delay(bigCircleTime)
+	      // .on("click", clickMoveSmall)
 	      .attr("transform", orig_pos)
 	      .style("fill-opacity", 0.6)
 

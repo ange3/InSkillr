@@ -1,1 +1,19 @@
-{"name": "cluster", "children": [{"name": "Web Dev", "size": 4}, {"name": "JavaScript", "size": 2}, {"name": "Strategic Plans", "size": 1}, {"name": "Business\\nIntelligence", "size": 1}, {"name": "", "size": 1}, {"name": "Business Analysis", "size": 2}, {"name": "SaaS", "size": 1}, {"name": "Mobile Devices", "size": 1}, {"name": "Leadership", "size": 4}, {"name": "Microsoft", "size": 3}, {"name": "Cross Team", "size": 2}, {"name": "Negotiation", "size": 2}, {"name": "Training", "size": 1}, {"name": "Requirements Analysis", "size": 1}, {"name": "Product Dev", "size": 6}, {"name": "Customer Service", "size": 3}, {"name": "Excel", "size": 3}, {"name": "C++", "size": 1}, {"name": "E-commerce", "size": 1}, {"name": "New Business Dev", "size": 1}, {"name": "Marketing", "size": 2}, {"name": "MySQL", "size": 1}, {"name": "Business Development", "size": 2}, {"name": "Partnerships", "size": 4}, {"name": "Start-ups", "size": 7}, {"name": "Project Lead", "size": 6}, {"name": "Team", "size": 1}, {"name": "Business Strat", "size": 3}, {"name": "Agile", "size": 5}]}
+{"name": "cluster", "children": [
+	{"name": "Web Dev", "size": 4}, 
+	{"name": "JavaScript", "size": 2}, 
+	{"name": "Business Analysis", "size": 2}, 
+	{"name": "SaaS", "size": 1}, 
+	{"name": "Leadership", "size": 4}, 
+	{"name": "Microsoft", "size": 3}, 
+	{"name": "Negotiation", "size": 2}, 
+	{"name": "Product Dev", "size": 6}, 
+	{"name": "Customer Service", "size": 3}, 
+	{"name": "C++", "size": 1}, 
+	{"name": "New Business Dev", "size": 1}, 
+	{"name": "MySQL", "size": 1}, 
+	{"name": "Project Lead", "size": 6}, 
+	{"name": "Team", "size": 1}, 
+	{"name": "Business Strat", "size": 3}]
+}
+
+
