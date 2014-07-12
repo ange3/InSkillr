@@ -1,0 +1,40 @@
+from collections import Counter
+import os
+
+arg = sys.argv[1]
+
+path = "skills" + "arg" + ".txt"
+
+f = open(path)
+l = f.readlines()
+f.close()
+
+cnt = Counter()
+
+for i in l:
+	s = i.strip()
+	if s == "HTML 5":
+		s = "HTML"
+	cnt[s] += 1
+
+print cnt
+
+match = {}
+noMatch = {}
+
+match["name"] = "cluster"
+match["children"] = []
+
+noMatch["name"] = "cluster"
+noMatch["children"] = []
+
+f = open("1.json",'w')
+for i in cnt:
+	t = {}
+	t["name"] = i
+	t["size"] = cnt[i]
+	match["children"].append(t)
+
+t = str(match)
+f.write(
+f.close()
