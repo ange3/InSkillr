@@ -23,6 +23,8 @@
             
         }
     </style>
+
+	   
     
     <center>
     <div style="width:500px; padding:100px;">
@@ -78,7 +80,9 @@
 	var diameter = 580,
 	    format = d3.format(",d"),
 	    color = d3.scale.category20c(),
-	    default_font_size = '10px';
+	    default_font_size = '10px',
+	    bigCircleTime = 7000,
+	    smallCircleTime = 3000;
 
 	var bubble = d3.layout.pack()
 	    .sort(null)
@@ -106,7 +110,7 @@
 	    .enter().append("g")
 	      .attr("class", "node")
 	      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-	      .on("mouseover", click);
+	      .on("click", mouseover);
 
 	  node.append("title")
 	      .text(function(d) { 
@@ -169,7 +173,7 @@
 	    .enter().append("g")
 	      .attr("class", "node")
 	      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-	      .on("mouseover", click);
+	      .on("click", mouseover);
 
 	  node.append("title")
 	      .text(function(d) { return d.className + ": " + format(d.value); });
@@ -219,24 +223,212 @@
 	  return {children: classes};
 	};
 
-	function click(d){
+	function mouseover(d){
 		this.parentNode.appendChild(this);
 
 		// console.log(d3.select(this).attr("transform"));
 
 		var orig_pos = d3.select(this).attr("transform");
 
+// SMALL CIRCLES 1
+		var smallCircle1 = d3.select(this).append("circle")
+		  	  .attr("r", 0)
+		  	  .transition()
+		      .attr("r", 12)
+		      .duration(smallCircleTime)
+
+		      .attr("transform", "translate(-30,-30)")
+		      // .attr("class", "peopleCircle1")
+		      .attr("fill", "url(#person_img1)")
+
+					
+		      .style("stroke", "grey")
+		      .style("stroke-width", "2");
+		      // .delay(smallCircleTime)
+		      // .remove();
+		      // .delay(smallCircleTime);
+
+		var smallCircle2 = d3.select(this).append("circle")
+		  	  .attr("r", 0)
+		  	  .transition()
+		      .attr("r", 12)
+		      .duration(smallCircleTime)
+
+		      .attr("transform", "translate(0,-50)")
+		      // .attr("class", "peopleCircle1")
+		      .attr("fill", "url(#person_img2)")
+		      .style("stroke", "grey")
+		      .style("stroke-width", "2");
+
+		 var smallCircle3 = d3.select(this).append("circle")
+		  	  .attr("r", 0)
+		  	  .transition()
+		      .attr("r", 12)
+		      .duration(smallCircleTime)
+
+		      .attr("transform", "translate(30,-30)")
+		      .attr("fill", "url(#person_img3)")
+		      .style("stroke", "grey")
+		      .style("stroke-width", "2");
+
+		var defs = svg.append('defs');
+		var g = defs.append("pattern")
+		    .attr('id', 'person_img1')
+		    .attr("x", 0)
+		    .attr("y", 0)
+		    .attr('patternUnits', 'objectBoundingBox')
+		    .attr('width', '40')
+		    .attr('height', '40');
+		var img = g.append("image")
+					.attr("x", "0")
+					.attr("y", "0")
+					.attr("width", "30")
+					.attr("height", "30")
+					.attr("xlink:href", "/Images/People1.jpg");
+
+		var defs2 = svg.append('defs');
+		var g = defs2.append("pattern")
+		    .attr('id', 'person_img2')
+		    .attr("x", 0)
+		    .attr("y", 0)
+		    .attr('patternUnits', 'objectBoundingBox')
+		    .attr('width', '40')
+		    .attr('height', '40');
+		var img = g.append("image")
+					.attr("x", "0")
+					.attr("y", "0")
+					.attr("width", "25")
+					.attr("height", "25")
+					.attr("xlink:href", "/Images/People2.jpg");
+
+		var defs3 = svg.append('defs');
+		var g = defs2.append("pattern")
+		    .attr('id', 'person_img3')
+		    .attr("x", 0)
+		    .attr("y", 0)
+		    .attr('patternUnits', 'objectBoundingBox')
+		    .attr('width', '40')
+		    .attr('height', '40');
+		var img = g.append("image")
+					.attr("x", "0")
+					.attr("y", "0")
+					.attr("width", "30")
+					.attr("height", "30")
+					.attr("xlink:href", "/Images/People3.jpg");
+
+
+// SMALL CIRCLES 2
+
+var smallCircle4 = d3.select(this).append("circle")
+		  	  .attr("r", 0)
+		  	  .transition()
+		      .attr("r", 12)
+		      .duration(smallCircleTime)
+
+		      .attr("transform", "translate(-30,30)")
+		      // .attr("class", "peopleCircle1")
+		      .attr("fill", "url(#course_img1)")
+
+					
+		      .style("stroke", "grey")
+		      .style("stroke-width", "2");
+		      // .delay(smallCircleTime)
+		      // .remove();
+		      // .delay(smallCircleTime);
+
+		var smallCircle5 = d3.select(this).append("circle")
+		  	  .attr("r", 0)
+		  	  .transition()
+		      .attr("r", 12)
+		      .duration(smallCircleTime)
+
+		      .attr("transform", "translate(0,50)")
+		      // .attr("class", "peopleCircle1")
+		      .attr("fill", "url(#course_img2)")
+		      .style("stroke", "grey")
+		      .style("stroke-width", "2");
+
+		 var smallCircle6 = d3.select(this).append("circle")
+		  	  .attr("r", 0)
+		  	  .transition()
+		      .attr("r", 12)
+		      .duration(smallCircleTime)
+
+		      .attr("transform", "translate(30,30)")
+		      .attr("fill", "url(#course_img3)")
+		      .style("stroke", "grey")
+		      .style("stroke-width", "2");
+
+		var defs = svg.append('defs');
+		var g = defs.append("pattern")
+		    .attr('id', 'course_img1')
+		    .attr("x", 0)
+		    .attr("y", 0)
+		    .attr('patternUnits', 'objectBoundingBox')
+		    .attr('width', '40')
+		    .attr('height', '40');
+		var img = g.append("image")
+					.attr("x", "0")
+					.attr("y", "0")
+					.attr("width", "30")
+					.attr("height", "23")
+					.attr("xlink:href", "/Images/Course1.png");
+
+		var defs2 = svg.append('defs');
+		var g = defs2.append("pattern")
+		    .attr('id', 'course_img2')
+		    .attr("x", 0)
+		    .attr("y", 0)
+		    .attr('patternUnits', 'objectBoundingBox')
+		    .attr('width', '40')
+		    .attr('height', '40');
+		var img = g.append("image")
+					.attr("x", "0")
+					.attr("y", "0")
+					.attr("width", "36")
+					.attr("height", "24")
+					.attr("xlink:href", "/Images/Course2.png");
+
+		var defs3 = svg.append('defs');
+		var g = defs2.append("pattern")
+		    .attr('id', 'course_img3')
+		    .attr("x", 0)
+		    .attr("y", 0)
+		    .attr('patternUnits', 'objectBoundingBox')
+		    .attr('width', '40')
+		    .attr('height', '40');
+		var img = g.append("image")
+					.attr("x", "0")
+					.attr("y", "0")
+					.attr("width", "30")
+					.attr("height", "20")
+					.attr("xlink:href", "/Images/Course3.png");
+
+
 	  d3.select(this)
 	      .style("pointer-events", "none")
 	    .transition()
 	      .duration(750)
 	      .attr("transform", "translate(" + diameter/2 + "," + diameter/2 + ")scale(3)")
-	    .transition()
+
+	        .transition()
+	      .delay(bigCircleTime)
+	      .attr("transform", orig_pos)
+	      .style("fill-opacity", 0.6)
+
+	      ;
+	      // .remove();                  
+                  
+	}
+
+	function click(d){
+		// this.parentNode.appendChild(this);
+		d3.select(this)
+			    .transition()
 	      .delay(1500)
 	      .attr("transform", orig_pos)
 	      .style("fill-opacity", 0.6)
-	      // .remove();                  
-                  
+
 	}
 
 	d3.select(self.frameElement).style("height", diameter + "px");

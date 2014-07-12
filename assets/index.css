@@ -28,3 +28,7 @@
 body{
 	font-family: Helvetica;
 }
+
+.peopleCircle1{
+	background-image: url(Images/People1.jpg);
+}
