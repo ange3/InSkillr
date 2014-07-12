@@ -1,0 +1,188 @@
+<html>
+<head>
+
+	<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+ //  		api_key: 753p0qzm9kbapl
+ //  		onLoad: onLinkedInLoad
+ //  		authorize: true
+	</script>
+
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+	<link rel="stylesheet" type="text/css" href="assets/index.css">
+
+	<title>Skills List</title>
+</head>
+<body>
+	<div>
+		<h1>What skills do you need for your dream job?</h1>
+
+		<h3>I heard you wanted to be a Senior Software Engineer..</h3>
+
+	</div>
+
+	<div class = "skills">
+
+	</div>
+
+	<div class = "skills_false">
+
+	</div>
+
+
+<script type="text/javascript">
+
+	var obj = [
+		{"skill": "OOP", "weight":0.1, match:true},
+		{"skill": "Web Applications", "weight":0.2, match:true},
+		{"skill_id": 18789, "skill": "Data-driven", "weight":0.3, match:true},
+		{"skill_id": 22412, "skill": "Marin Software", "weight":0.8, match:true},
+		{"skill_id": 44846, "skill": "Real World", "weight":0.7, match:true},
+		{"skill_id": 2888, "skill": "Collaboration", "weight":0.4, match:true},
+		{"skill_id": 989, "skill": "Trends", "weight":0.1, match:true},
+		{"skill_id": 20080, "skill": "Design-Build", "weight":0.6, match:true},
+		{"skill_id": 2498, "skill": "Unit Testing", "weight":0.9, match:true},
+		{"skill_id": 18527, "skill": "Object-oriented Software", "weight":0.5, match:true},
+		{"skill_id": 12584, "skill": "Collaborative Environment", "weight":0.1, match:false},
+		{"skill_id": 19897, "skill": "Datasets", "weight":0.3, match:false},
+		{"skill_id": 20097, "skill": "Software Engineers", "weight":0.1, match:false},
+		{"skill_id": 1136, "skill": "Distributed Systems", "weight":0.2, match:false},
+		{"skill_id": 18230, "skill": "Database Systems", "weight":0.6, match:false},
+		{"skill_id": 1070, "skill": "Algorithms", "weight":0.1, match:false},
+		{"skill_id": 1541, "skill": "Computer Science", "weight":0.9, match:false},
+		{"skill_id": 242, "skill": "Software", "weight":0.1, match:false},
+		{"skill_id": 17, "skill": "Engineers", "weight":0.3, match:false},
+		{"skill_id": 10335, "skill": "Designing", "weight":0.4, match:false},
+		{"skill_id": 672, "skill": "Code", "weight":0.7, match:false}];
+
+
+	var diameter = 480,
+	    format = d3.format(",d"),
+	    color = d3.scale.category20c();
+
+	var bubble = d3.layout.pack()
+	    .sort(null)
+	    .size([diameter, diameter])
+	    .padding(1.5);
+
+	// Skills you do have
+
+	var svg = d3.select(".skills").append("svg")
+	    .attr("width", diameter)
+	    .attr("height", diameter)
+	    .attr("class", "bubble");
+
+	d3.json("data/1.json", function(error, root) {
+	  var node = svg.selectAll(".node")
+	      .data(bubble.nodes(classes(root))
+	      .filter(function(d) { return !d.children; }))
+	    .enter().append("g")
+	      .attr("class", "node")
+	      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+	      .on("click", click);
+
+	  node.append("title")
+	      .text(function(d) { return d.className + ": " + format(d.value); });
+
+	  node.append("circle")
+	  	  .attr("r", 0)
+	  	  .transition()
+	      .attr("r", function(d) { return d.r; })
+	      .duration(3000)
+	      .style("fill", "steelblue")
+	      .style("stroke", "grey")
+	      .style("stroke-width", "2");
+
+	  node.append("text")
+	  	  .attr("fill", "steelblue")
+	  	  .transition()
+	  	  .attr("fill", "white")
+	  	  .duration(3000)
+	      .attr("dy", ".3em")
+	      .style("text-anchor", "middle")
+	      
+	      .text(function(d) { return d.className.substring(0, d.r / 3); })
+	      
+	});
+
+	// Skills you do not have
+
+	var space = d3.select(".skills").append("svg")
+		.attr("width", 200)
+		.attr("height", 200);
+
+	var svg2 = d3.select(".skills").append("svg")
+	    .attr("width", diameter)
+	    .attr("height", diameter)
+
+	    .attr("class", "bubble");
+
+	d3.json("flare2.json", function(error, root) {
+	  var node = svg2.selectAll(".node")
+	      .data(bubble.nodes(classes(root))
+	      .filter(function(d) { return !d.children; }))
+	    .enter().append("g")
+	      .attr("class", "node")
+	      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+	      .on("click", click);
+
+	  node.append("title")
+	      .text(function(d) { return d.className + ": " + format(d.value); });
+
+	  node.append("circle")
+	  	  .attr("r", 0)
+	  	  .transition()
+	      .attr("r", function(d) { return d.r; })
+	      .duration(3000)
+	      .style("fill", "darkorange")
+	      .style("stroke", "grey")
+	      .style("stroke-width", "2");
+
+	  node.append("text")
+	  	  .attr("fill", "steelblue")
+	  	  .transition()
+	  	  .attr("fill", "white")
+	  	  .duration(3000)
+	      .attr("dy", ".3em")
+	      .style("text-anchor", "middle")
+	      
+	      .text(function(d) { return d.className.substring(0, d.r / 3); })
+	      
+	});
+
+
+	// Returns a flattened hierarchy containing all leaf nodes under the root.
+	function classes(root) {
+	  var classes = [];
+
+	  function recurse(name, node) {
+	    if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+	    else classes.push({packageName: name, className: node.name, value: node.size});
+	  }
+
+	  recurse(null, root);
+	  return {children: classes};
+	};
+
+	function click(d){
+		this.parentNode.appendChild(this);
+
+	  d3.select(this)
+	      .style("pointer-events", "none")
+	    .transition()
+	      .duration(750)
+	      .attr("transform", "translate(240,240)scale(5)")
+	    .transition()
+	      .delay(1500)
+	      .attr("transform", "translate(120,120)scale(1)")
+	      .style("fill-opacity", 0.8)
+	      // .remove();
+	}
+
+	d3.select(self.frameElement).style("height", diameter + "px");
+</script>
+
+
+
+</body>
+</html>

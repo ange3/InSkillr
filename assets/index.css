@@ -1,0 +1,25 @@
+.chart circle {
+  /*fill: darkorange;*/
+}
+
+.skills_true{
+	/*fill: yellowgreen;*/
+	position: relative;
+}
+
+.skills_false{
+	float:right;
+	/*fill: darkorange;*/
+	position: absolute;
+	left: 50px;
+}
+
+.chart text {
+  fill: gray;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+body{
+	font-family: Helvetica;
+}

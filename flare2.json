@@ -1,0 +1,27 @@
+{
+ "name": "flare",
+ "children": [
+  {
+   "name": "analytics",
+   "children": [
+    {
+     "name": "cluster",
+     "children": [
+      {"name": "OOP", "size": 80},
+      {"name": "Web Applications", "size": 70},
+      {"name": "Data-driven", "size": 60},
+      {"name": "Real World Collaboration", "size": 50},
+      {"name": "Design-Build", "size": 40},
+      {"name": "Unit Testing", "size": 40},
+      {"name": "Unit Testing", "size": 30},
+      {"name": "Unit Testing", "size": 20},
+      {"name": "Unit Testing", "size": 20}
+     ]
+    }
+   ]
+  }
+ 
+  
+  
+ ]
+}
