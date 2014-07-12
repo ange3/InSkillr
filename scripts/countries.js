@@ -1,5 +1,5 @@
 ﻿var countries = {
-    "PM": "Program Manager",
+    "PM": "Product Manager",
     "SE": "Software Engineer",
 	"TR": "Technical Recruiter",
 	"DS": "Data Scientist",

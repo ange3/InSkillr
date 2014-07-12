@@ -1,6 +1,7 @@
 <html>
 <head>
-
+    <SCRIPT LANGUAGE="JavaScript" SRC="szcript.js">
+        </SCRIPT>
 	<script type="text/javascript" src="http://platform.linkedin.com/in.js">
  //  		api_key: 753p0qzm9kbapl
  //  		onLoad: onLinkedInLoad
@@ -10,14 +11,31 @@
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
 	<link rel="stylesheet" type="text/css" href="assets/index.css">
-
-	<title>Skills List</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+	<title>Roadmap</title>
 </head>
-<body>
+<body onload="drawszlider(121, 121);">
+    <style>
+        body {
+            background: url("bg6.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+        }
+    </style>
+    
+    
+    <div style="width:500px; padding:100px;">
+		<div id="szlider">
+			<div id="szliderbar">
+			</div>
+			<div id="szazalek">
+			</div>
+		</div>
+	</div>
+    
 	<div>
-		<h1>What skills do you need for your dream job?</h1>
-
-		<h3>I heard you wanted to be a Senior Software Engineer!</h3>
+		<!--<h1> // Write something here </h1> -->
 
 	</div>
 
@@ -56,7 +74,7 @@
 		{"skill": "Code", "weight":0.7, match:false}];
 
 
-	var diameter = 480,
+	var diameter = 580,
 	    format = d3.format(",d"),
 	    color = d3.scale.category20c();
 
@@ -68,7 +86,9 @@
     // Check this
     var position = gup( 'country' );
     position = position.replace("+"," ");
-    alert(position);
+    drawszlider(100,50);
+    //alert(position);
+
     
 	// Skills you do have
 
@@ -84,7 +104,7 @@
 	    .enter().append("g")
 	      .attr("class", "node")
 	      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-	      .on("click", click);
+	      .on("mouseover", click);
 
 	  node.append("title")
 	      .text(function(d) { return d.className + ": " + format(d.value); });
@@ -176,10 +196,10 @@
 	      .style("pointer-events", "none")
 	    .transition()
 	      .duration(750)
-	      .attr("transform", "translate(240,240)scale(5)")
+	      .attr("transform", "translate(200,200)scale(3)")
 	    .transition()
 	      .delay(1500)
-	      .attr("transform", "translate(120,120)scale(1)")
+	      .attr("transform", "translate(150,150)scale(1)")
 	      .style("fill-opacity", 0.6)
 	      // .remove();
                   
@@ -198,6 +218,12 @@
             return "";
         else
             return results[1];
+    }
+                              
+    function drawszlider(ossz, meik){
+       var szazalek=Math.round((meik*100)/ossz);
+       document.getElementById("szliderbar").style.width=szazalek+'%';
+       document.getElementById("szazalek").innerHTML=szazalek+'%';
     }
     
 </script>
